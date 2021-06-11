@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">hi-library</string>
+
+    <string name="if_home">&#xe61e;</string>
+    <string name="if_classic">&#xe7f9;</string>
+    <string name="if_favorite">&#xe629;</string>
+    <string name="if_cart">&#xe602;</string>
+    <string name="if_mine">&#xe603;</string>
+
+</resources>
