@@ -11,5 +11,9 @@ import androidx.annotation.Px;
 public interface IHiTab<D> extends IHiTabLayout.OnTabSelectedListener<D> {
     void setHiTabInfo(@Nullable D data);
 
+    /**
+     * 动态的修改某个item的大小
+     * @param height
+     */
     void resetHeight(@Px int height);
 }

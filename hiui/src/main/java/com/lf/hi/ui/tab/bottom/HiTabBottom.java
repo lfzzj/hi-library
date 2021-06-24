@@ -21,7 +21,7 @@ import com.lf.hi.ui.tab.common.IHiTab;
 /**
  * @author: LF
  * @data on 2021/5/25 下午9:20
- * @desc TODO
+ * @desc 单个底部导航栏
  */
 public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInfo<?>> {
     private HiTabBottomInfo<?> tabInfo;
@@ -31,11 +31,11 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
 
 
     public HiTabBottom(Context context) {
-        super(context, null);
+        this(context, null);
     }
 
     public HiTabBottom(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
+        this(context, attrs, 0);
     }
 
     public HiTabBottom(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -73,8 +73,13 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
         inflateInfo(false, true);
     }
 
+    /**
+     *
+     * @param selected 是否被选中
+     * @param init 是不是初始化
+     */
     private void inflateInfo(boolean selected, boolean init) {
-        if (tabInfo.tabType == HiTabBottomInfo.TabType.ICON) {
+        if (tabInfo.tabType == HiTabBottomInfo.TabType.ICON) {//iconFont
             if (init) {
                 tabImageView.setVisibility(View.GONE);
                 tabIconView.setVisibility(View.VISIBLE);
@@ -85,11 +90,11 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
                     tabNameView.setText(tabInfo.name);
                 }
             }
-            if (selected) {
+            if (selected) {//被选中时
                 tabIconView.setText(TextUtils.isEmpty(tabInfo.selectIconName) ? tabInfo.defaultIconName : tabInfo.selectIconName);
                 tabIconView.setTextColor(getTextColor(tabInfo.tintColor));
                 tabNameView.setTextColor(getTextColor(tabInfo.tintColor));
-            } else {
+            } else {//未选中时
                 tabIconView.setText(tabInfo.defaultIconName);
                 tabIconView.setTextColor(getTextColor(tabInfo.defaultColor));
                 tabNameView.setTextColor(getTextColor(tabInfo.defaultColor));
@@ -120,15 +125,15 @@ public class HiTabBottom extends RelativeLayout implements IHiTab<HiTabBottomInf
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.height = height;
         setLayoutParams(layoutParams);
-        getTabImageView().setVisibility(View.GONE);
+        getTabNameView().setVisibility(View.GONE);
     }
 
     @Override
     public void OnTabSelectedChange(int index, @Nullable HiTabBottomInfo<?> prevInfo, @Nullable HiTabBottomInfo<?> nextInfo) {
-
         if (prevInfo != tabInfo && nextInfo != tabInfo || prevInfo == nextInfo) {
             return;
         }
+        //tabBottom被反选了
         if (prevInfo == tabInfo){
             inflateInfo(false,false);
         }else{

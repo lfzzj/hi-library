@@ -23,4 +23,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_log" />
+
+    <com.lf.hi.library.IconFontView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/if_home"
+        android:textColor="#ff656667"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.lf.hi.ui.tab.bottom.HiTabBottom
+        android:id="@+id/tab_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
