@@ -61,7 +61,7 @@ class HiTabBottomDemoActivity : AppCompatActivity() {
         val infoChat = HiTabBottomInfo(
             "推荐",
             "fonts/iconfont.ttf",
-            getString(R.string.if_cart),
+            getString(R.string.if_commend),
             null,
             "#ff656667",
             "#ffd44949"

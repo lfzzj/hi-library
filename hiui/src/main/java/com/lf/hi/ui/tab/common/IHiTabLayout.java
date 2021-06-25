@@ -23,7 +23,7 @@ public interface IHiTabLayout<Tab extends ViewGroup,D> {
     Tab findTab(@NonNull D data);
 
     //设置监听器
-    void addTabSelectedChangeListener(OnTabSelectedListener<HiTabBottomInfo<?>> listener);
+    void addTabSelectedChangeListener(OnTabSelectedListener<D> listener);
 
     //设置默认选中
     void defaultSelected(@NonNull D defaultInfo);

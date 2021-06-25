@@ -1,4 +1,9 @@
+include ':common'
 include ':hiui'
 include ':hilibrary'
 include ':app'
 rootProject.name = "hi-library"
+
+//引入项目下的
+//include ':hi-library'
+//project(':hi-library').projectDir = "../hi-library/hilibrary" as File
