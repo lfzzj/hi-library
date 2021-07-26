@@ -2,9 +2,18 @@ package com.lf.hi.library
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import android.view.View
+import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenResumed
+import androidx.lifecycle.whenStarted
 import com.lf.common.ui.component.HiBaseActivity
 import com.lf.hi.library.demo.banner.HiBannerDemoActivity
+import com.lf.hi.library.demo.coroutine.CoroutineScene
+import com.lf.hi.library.demo.coroutine.CoroutineScene3
 import com.lf.hi.library.demo.log.HiLogDemoActivity
 import com.lf.hi.library.demo.refresh.HiRefreshDemoActivity
 import com.lf.hi.library.demo.tab.HiTabBottomDemoActivity
@@ -12,17 +21,22 @@ import com.lf.hi.library.demo.tab.HiTabTopDemoActivity
 import com.lf.hi.ui.refresh.HiRefresh
 import com.lf.hi.ui.tab.bottom.HiTabBottom
 import com.lf.hi.ui.tab.bottom.HiTabBottomInfo
+import kotlinx.coroutines.launch
 
 class DemoActivity : HiBaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
+
         findViewById<View>(R.id.btn_log).setOnClickListener(this)
         findViewById<View>(R.id.btn_bottom).setOnClickListener(this)
         findViewById<View>(R.id.btn_top).setOnClickListener(this)
         findViewById<View>(R.id.btn_refresh).setOnClickListener(this)
         findViewById<View>(R.id.btn_banner).setOnClickListener(this)
+        findViewById<View>(R.id.btn_coroutine).setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View?) {
@@ -42,6 +56,43 @@ class DemoActivity : HiBaseActivity(), View.OnClickListener {
             R.id.btn_banner -> {
                 startActivity(Intent(this, HiBannerDemoActivity::class.java))
             }
+            R.id.btn_coroutine -> {
+//                CoroutineScene.startScene2()
+                lifecycleScope.launch { //用lifecycleScope启动协程 避免内存泄漏
+                    val content = CoroutineScene3.parseAssetsFile(assets, "config.json")
+                }
+
+                lifecycleScope.launchWhenCreated {
+                    //是指当我们的宿主的生命周期，至少为oncreate的时候才会启动
+                    whenCreated {//
+                        //这里的代码只有当 宿主的生命周期为oncreate才会执行，否则都是暂停
+                    }
+                    whenResumed {
+                        //这里的代码只有当 宿主的生命周期为onResume才会执行，否则都是暂停
+                    }
+                    whenStarted {
+                        //这里的代码只有当 宿主的生命周期为onStart才会执行，否则都是暂停
+                    }
+                }
+                lifecycleScope.launchWhenStarted {
+                    //是指当我们的宿主的生命周期，至少为onStart的时候才会启动
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val view = findViewById<View>(R.id.btn_log)
+        Log.e("TAG", "onResume: width: ${view.width} height: ${view.height}")
+
+        view.post {
+            Log.e("TAG", "onResume:post,width: ${view.width} height: ${view.height}")
+        }
+
+        view.viewTreeObserver.addOnGlobalLayoutListener {
+            view.viewTreeObserver.removeOnGlobalLayoutListener { this }
+            Log.e("TAG", "onResume:viewTreeObserver width: ${view.width} height: ${view.height}")
         }
     }
 }

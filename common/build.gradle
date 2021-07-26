@@ -42,4 +42,14 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+//    //在kotlin项目中配合jetpack架构引入协程
+//    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+//    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+//    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+//
+//    //在kotlin项目但并非jetpack架构项目中引入协程
+//    api 'org.jetbrains.kotlin:kotlinx-coroutines-core:1.2.1'
+//    api 'org.jetbrains.kotlin:kotlinx-coroutines-android:1.1.1'
+
 }
