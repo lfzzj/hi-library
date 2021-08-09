@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
+import com.lf.common.ui.view.loadUrl
 import com.lf.hi.library.R
 import com.lf.hi.ui.banner.HiBanner
 import com.lf.hi.ui.banner.core.HiBannerMo
@@ -43,7 +43,7 @@ class HiBannerDemoActivity : AppCompatActivity() {
         mHiBanner.setBannerData(R.layout.banner_item_layout, moList)
         mHiBanner.setBindAdapter { viewHolder, mo, position ->
             val imageView = viewHolder.findViewById<ImageView>(R.id.iv_image)
-            Glide.with(this@HiBannerDemoActivity).load(mo.url).into(imageView)
+            imageView.loadUrl(mo.url)
             val titleView: TextView = viewHolder.findViewById(R.id.tv_title)
             titleView.text = mo.url
         }

@@ -27,7 +27,16 @@ public abstract class HiBaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layoutView = inflater.inflate(getLayoutId(),container,false);
+        layoutView = inflater.inflate(getLayoutId(), container, false);
         return layoutView;
+    }
+
+    //检测宿主是否还存活
+    public boolean isAlive() {
+        if (isRemoving() || isDetached() || getActivity() == null) {
+            return false;
+        }
+        return true;
+
     }
 }

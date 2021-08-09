@@ -9,11 +9,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hilibrary">
-        <activity android:name=".demo.banner.HiBannerDemoActivity"></activity>
-        <activity android:name=".DemoActivity">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +25,12 @@
         <activity android:name=".demo.tab.HiTabBottomDemoActivity" />
         <activity android:name=".demo.tab.HiTabTopDemoActivity" />
         <activity android:name=".demo.refresh.HiRefreshDemoActivity" />
+        <activity android:name=".demo.banner.HiBannerDemoActivity"/>
+
+        <activity android:name=".biz.LoginActivity"/>
+        <activity android:name=".biz.RegistrationActivity"/>
+
+        <activity android:name=".biz.DegradeGlobalActivity"/>
     </application>
 
 </manifest>

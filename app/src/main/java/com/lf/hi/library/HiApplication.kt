@@ -1,6 +1,7 @@
 package com.lf.hi.library
 
 import android.app.Application
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
 import com.lf.common.ui.component.HiBaseApplication
 import com.lf.hi.hilibrary.log.HiConsolePrinter
@@ -30,5 +31,6 @@ class HiApplication : HiBaseApplication() {
             }
         }, HiConsolePrinter())
 
+        ARouter.init(this)
     }
 }

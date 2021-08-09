@@ -2,26 +2,26 @@ package com.lf.hi.library
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
 import androidx.lifecycle.whenResumed
 import androidx.lifecycle.whenStarted
 import com.lf.common.ui.component.HiBaseActivity
+import com.lf.hi.hilibrary.log.HiLog
+import com.lf.hi.hilibrary.restful.HiCallback
+import com.lf.hi.hilibrary.restful.HiResponse
 import com.lf.hi.library.demo.banner.HiBannerDemoActivity
-import com.lf.hi.library.demo.coroutine.CoroutineScene
 import com.lf.hi.library.demo.coroutine.CoroutineScene3
 import com.lf.hi.library.demo.log.HiLogDemoActivity
 import com.lf.hi.library.demo.refresh.HiRefreshDemoActivity
 import com.lf.hi.library.demo.tab.HiTabBottomDemoActivity
 import com.lf.hi.library.demo.tab.HiTabTopDemoActivity
-import com.lf.hi.ui.refresh.HiRefresh
-import com.lf.hi.ui.tab.bottom.HiTabBottom
-import com.lf.hi.ui.tab.bottom.HiTabBottomInfo
+import com.lf.hi.library.http.ApiFactory
+import com.lf.hi.library.http.api.AccountApi
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class DemoActivity : HiBaseActivity(), View.OnClickListener {
 
@@ -35,6 +35,15 @@ class DemoActivity : HiBaseActivity(), View.OnClickListener {
         findViewById<View>(R.id.btn_refresh).setOnClickListener(this)
         findViewById<View>(R.id.btn_banner).setOnClickListener(this)
         findViewById<View>(R.id.btn_coroutine).setOnClickListener(this)
+
+        ApiFactory.create(AccountApi::class.java).listCities("").enqueue(object : HiCallback<JSONObject> {
+            override fun onSuccess(response: HiResponse<JSONObject>) {
+                HiLog.dt("zzj", "--------@{response}" )
+            }
+
+            override fun onFailed(throwable: Throwable) {
+            }
+        })
 
 
     }
